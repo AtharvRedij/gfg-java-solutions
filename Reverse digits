@@ -1,0 +1,17 @@
+class Solution
+{
+    public long reverse_digit(long n)
+    {
+        // Code here
+        long result = 0;
+        int digit = 0;
+        
+        while(n>0) {
+            digit = (int) (n%10);
+            n /= 10;
+            result = result * 10 + digit;
+        }
+        
+        return result;
+    }
+}
