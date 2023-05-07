@@ -1,0 +1,27 @@
+
+class Solution
+{
+    public int reverse_digit(int n)
+    {
+        // Code here
+        int result = 0;
+        int digit = 0;
+        
+        while(n>0) {
+            digit = n%10;
+            n /= 10;
+            result = result * 10 + digit;
+        }
+        
+        return result;
+    }
+    
+    public String is_palindrome(int n)
+    {
+        if (this.reverse_digit(n) == n) {
+            return "Yes";
+        } else {
+            return "No";
+        }
+    }
+}
