@@ -1,0 +1,37 @@
+class Solution {
+    int findLargestElementIndex(int arr[], int n)
+    {
+        int index = 0;
+        int largest = arr[0];
+        for (int i=1; i<n; i++) {
+            if (arr[i] > largest) {
+                largest = arr[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+    
+    int print2largest(int arr[], int n) {
+        int largestElementIndex = findLargestElementIndex(arr, n);
+        int secondLargestElementIndex = -1;
+        
+        for (int i=0; i<n; i++) {
+            if (i == largestElementIndex) {
+                continue;
+            }
+            else if (secondLargestElementIndex == -1 && arr[i] != arr[largestElementIndex]) {
+                secondLargestElementIndex = i;
+            }
+            else if (secondLargestElementIndex != -1 
+                && arr[i] > arr[secondLargestElementIndex] 
+                && arr[i] < arr[largestElementIndex]) {
+                secondLargestElementIndex = i;
+            }
+        }
+
+        if(secondLargestElementIndex == -1) return -1;
+        
+        return arr[secondLargestElementIndex];
+    }
+}
