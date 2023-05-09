@@ -1,0 +1,17 @@
+class Solution {
+    void pushZerosToEnd(int[] arr, int n) {
+        int pointer = -1;
+        for(int i=0; i<n; i++) {
+            if (arr[i] == 0 && pointer == -1) {
+                pointer = i;
+            }
+            
+            if (pointer != -1 && arr[pointer] == 0 && arr[i] != 0) {
+                int temp = arr[pointer];
+                arr[pointer] = arr[i];
+                arr[i] = temp;
+                pointer++;
+            }
+        }
+    }
+}
