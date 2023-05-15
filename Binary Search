@@ -1,0 +1,24 @@
+class Solution {
+    int search(int arr[], int start, int end, int k) {
+        if (end < start) {
+            return -1;
+        }
+        
+        int mid = start + (end - start) / 2;
+        
+        if(arr[mid] == k) {
+            return mid;
+        }
+        else if(arr[mid] < k) {
+            return search(arr, mid+1, end, k);
+        }
+        else {
+            return search(arr, start, mid-1, k);
+        }
+        
+    }
+    
+    int binarysearch(int arr[], int n, int k) {
+        return search(arr, 0, n-1, k);
+    }
+}
