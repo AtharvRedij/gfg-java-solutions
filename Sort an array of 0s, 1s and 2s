@@ -1,0 +1,18 @@
+class Solution
+{
+    private static void fillWith(int a[], int start, int end, int fillNum) {
+        for(int i=start; i<=end; i++) 
+          a[i] = fillNum;
+    }
+    
+    public static void sort012(int a[], int n)
+    {
+        int[] counts = {0, 0, 0};
+        for(int num: a)
+          counts[num]++;
+          
+        fillWith(a, 0, counts[0] - 1, 0); 
+        fillWith(a, counts[0], counts[0] + counts[1] - 1, 1); 
+        fillWith(a, counts[0] + counts[1], n - 1, 2); 
+    }
+}
