@@ -1,0 +1,52 @@
+class Solution
+{
+    //Function to return a list containing the union of the two arrays.
+    public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        // add your code here
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        int i=0, j=0, lastInsertedElement = -1;
+        while(i<n && j<m) {
+            if(lastInsertedElement != -1 && arr1[i] == lastInsertedElement) {
+                i++;
+            }
+            else if(lastInsertedElement != -1 && arr2[j] == lastInsertedElement) {
+                j++;
+            }
+            else if (arr1[i] < arr2[j]) {
+                lastInsertedElement = arr1[i];
+                result.add(arr1[i]);
+                i++;
+            }
+            else {
+                lastInsertedElement = arr2[j];
+                result.add(arr2[j]);
+                j++;
+            }
+        }
+        
+        while(i<n) {
+            if(lastInsertedElement != -1 && arr1[i] == lastInsertedElement) {
+                i++;
+            }
+            else {
+                lastInsertedElement = arr1[i];
+                result.add(arr1[i]);
+                i++;
+            }
+        }
+        
+        while(j<m) {
+            if(lastInsertedElement != -1 && arr2[j] == lastInsertedElement) {
+                j++;
+            }
+            else {
+                lastInsertedElement = arr2[j];
+                result.add(arr2[j]);
+                j++;
+            }
+        }
+        
+        return result;
+    }
+}
