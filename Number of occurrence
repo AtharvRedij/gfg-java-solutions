@@ -1,0 +1,31 @@
+class Solution {
+    int search(int arr[], int start, int end, int k, int result, int direction) {
+        if (end < start) {
+            return result;
+        }
+
+        int mid = start + (end - start) / 2;
+
+        if(arr[mid] == k) {
+            result = mid;
+            if(direction == -1) // search left side i.e. find first
+                return search(arr, start, mid-1, k, result, direction);
+            else
+                return search(arr, mid+1, end, k, result, direction);
+        }
+        else if(arr[mid] < k) {
+            return search(arr, mid+1, end, k, result, direction);
+        }
+        else {
+            return search(arr, start, mid-1, k, result, direction);
+        }
+
+    }
+    
+    int count(int[] arr, int n, int k) {
+        int firstIndex = search(arr, 0, n-1, k, -1, -1);
+        int lastIndex = search(arr, 0, n-1, k, -1, 1);
+        if (firstIndex == -1) return 0;
+        return lastIndex - firstIndex + 1;
+    }
+}
