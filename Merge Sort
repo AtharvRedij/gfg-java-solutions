@@ -1,0 +1,46 @@
+class Solution
+{
+    void merge(int arr[], int l, int m, int r)
+    {
+        int i=l, j=m+1;
+        List<Integer> temp = new ArrayList<>();
+         
+        while(i<=m && j<=r) {
+            if(arr[i] < arr[j]) {
+                temp.add(arr[i]);
+                i++;
+            }
+            else {
+                temp.add(arr[j]);
+                j++;
+            }
+        }
+        
+        while(i<=m) {
+            temp.add(arr[i]);
+            i++;
+        }
+        
+        while(j<=r) {
+            temp.add(arr[j]);
+            j++;
+        }
+        
+        for(int index=l; index<=r; index++) {
+            arr[index] = temp.get(index-l);
+        }
+    }
+    void mergeSort(int arr[], int l, int r)
+    {
+        if (l >= r) {
+            return;
+        }
+        
+        int mid = l + (r-l)/2;
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid+1, r);
+        merge(arr, l, mid, r);
+        
+        
+    }
+}
