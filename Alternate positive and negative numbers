@@ -1,0 +1,29 @@
+class Solution {
+    void rearrange(int arr[], int n) {
+        // code here
+        List<Integer> positives = new ArrayList<>();
+        List<Integer> negatives = new ArrayList<>();
+
+        for(int num: arr) {
+            if(num >= 0) 
+                positives.add(num);
+            else
+                negatives.add(num);
+        }
+        
+
+        int index=0, i=0, j=0;
+        while(i<positives.size() && j<negatives.size()) {
+            arr[index++] = positives.get(i++);
+            arr[index++] = negatives.get(j++);
+        }
+        
+        while(i<positives.size()) {
+            arr[index++] = positives.get(i++);
+        }
+
+        while(j<negatives.size()) {
+            arr[index++] = negatives.get(j++);
+        }
+    }
+}
