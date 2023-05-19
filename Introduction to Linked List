@@ -1,0 +1,18 @@
+class Solution {
+    static Node constructLL(int arr[]) {
+        Node head = null, tail = null;
+        
+        for(int num: arr) {
+            Node current = new Node(num);
+            if(head == null) {
+                head = current;
+            }
+            else {
+                tail.next = current;
+            }
+            tail = current;
+        }
+        
+        return head;
+    }
+}
