@@ -1,0 +1,31 @@
+class Solution{
+    String longestCommonPrefix(String arr[], int n){
+        String result = "";
+        String base = arr[0];
+        for(int pointer = 0; pointer < base.length(); pointer++) {
+            boolean allSame = true;
+            for(int i=1; i< arr.length; i++) {
+                try {
+                    if(arr[i].charAt(pointer) != base.charAt(pointer)) {
+                        allSame = false;
+                        break;
+                    }
+                } 
+                catch(StringIndexOutOfBoundsException e) {
+                    allSame = false;
+                    break;
+                }
+            }
+            
+            if(allSame) {
+                result += base.charAt(pointer);
+            }
+            else {
+                break;
+            }
+        }
+        
+        if (result.length() > 0) return result;
+        return "-1";
+    }
+}
