@@ -1,0 +1,54 @@
+class Solution
+{
+    Node reverseList(Node head)
+    {
+        Node prev = null, current = head, temp = null;
+        
+        while(current != null) {
+            temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
+        }
+        
+        return prev;
+    }
+    
+    //Function to check whether the list is palindrome.
+    boolean isPalindrome(Node head) 
+    {
+        Node temp = head;
+        int size = 0;
+        
+        while(temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        
+        if(size == 1) return true;
+        
+        temp=head;
+        for(int i=1; i< size/2; i++) {
+            temp = temp.next;
+        }
+        
+        Node firstHalfHead = head, secondHalfHead = null;
+        if(size % 2 == 1) {
+            secondHalfHead = temp.next.next;
+        }
+        else {
+            secondHalfHead = temp.next;
+        }
+        temp.next = null;
+        
+        secondHalfHead = reverseList(secondHalfHead);
+        
+        while(firstHalfHead != null && secondHalfHead != null) {
+            if(firstHalfHead.data != secondHalfHead.data) return false;
+            firstHalfHead = firstHalfHead.next;
+            secondHalfHead = secondHalfHead.next;
+        }
+          
+        return true;
+    }    
+}
