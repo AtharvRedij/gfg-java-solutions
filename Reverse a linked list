@@ -15,3 +15,43 @@ class Solution
         return prev;
     }
 }
+
+// Recursive
+class Solution
+{
+    Node[] reverse(Node head) {
+        if(head.next == null) {
+            return null;
+        }
+        else {
+            Node[] nodes = reverse(head.next);
+            Node newHead = null, newTail = null;
+            if(nodes == null) {
+                newHead = head.next;
+                newHead.next = head;
+            }
+            else {
+                newHead = nodes[0];
+                newTail = nodes[1];
+                newTail.next = head;
+            }
+            
+            newTail = head;
+             
+            Node[] newNodes = {newHead, newTail};
+            return newNodes;
+        }
+    }
+    
+    //Function to reverse a linked list.
+    Node reverseList(Node head)
+    {
+        if(head.next == null) return head;
+        
+        Node[] nodes = reverse(head);
+        Node newHead = nodes[0];
+        Node newTail = nodes[1];
+        newTail.next = null;
+        return newHead;
+    }
+}
