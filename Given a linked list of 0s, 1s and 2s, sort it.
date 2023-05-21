@@ -1,0 +1,35 @@
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        int zeroCount = 0, oneCount = 0, twoCount = 0;
+        Node current = head;
+        
+        while(current != null) {
+            if(current.data == 0) zeroCount++;
+            else if(current.data == 1) oneCount++;
+            else if(current.data == 2) twoCount++;
+            
+            current = current.next;
+        }
+        
+        current = head;
+        for(int i=0; i<zeroCount; i++) {
+            current.data = 0;
+            current = current.next;
+        }
+        
+        for(int i=0; i<oneCount; i++) {
+            current.data = 1;
+            current = current.next;
+        }
+        
+        for(int i=0; i<twoCount; i++) {
+            current.data = 2;
+            current = current.next;
+        }
+        
+        return head;
+    }
+}
