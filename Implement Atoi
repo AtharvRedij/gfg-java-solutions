@@ -1,0 +1,31 @@
+class Solution
+{
+    int atoi(String str) {
+	  int result = 0, power = 0, i;
+	  
+	  for(i = str.length() - 1; i >= 0; i--) {
+	      try {
+	          String ch = str.charAt(i) + "";
+	          if(ch.equals("-")) {
+	              result *= -1;
+	              i--;
+	              break;
+	          } else {
+	              int digit = Integer.parseInt(ch);
+        	      result += (int) (digit * Math.pow(10, power));
+        	      power++;
+	          }
+	          
+	      } catch (NumberFormatException e) {
+	          return -1;
+	      }
+	      
+	  }
+	  
+      // false means there are chars left to process
+      // cases like --100 or 1-23  
+	  if(i != -1) return -1;
+	  
+	  return result;
+    }
+}
