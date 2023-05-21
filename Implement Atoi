@@ -29,3 +29,37 @@ class Solution
 	  return result;
     }
 }
+
+// Recursive
+class Solution {
+  int convert(String s, int lastIndex, int currentIndex) {
+
+    if (currentIndex > lastIndex) {
+      return 0;
+    } else {
+      String ch = s.charAt(currentIndex) + "";
+      int answer = convert(s, lastIndex, currentIndex + 1);
+
+      if (ch.equals("-")) {
+        if (currentIndex != 0) {
+          throw new NumberFormatException("Invalid");
+        } else {
+          return answer * -1;
+        }
+      }
+
+      int digit = Integer.parseInt(ch);
+      int base = (int)(digit * Math.pow(10, lastIndex - currentIndex));
+      int result = base + answer;
+      return result;
+    }
+  }
+
+  int atoi(String str) {
+    try {
+      return convert(str, str.length() - 1, 0);
+    } catch (NumberFormatException e) {
+      return -1;
+    }
+  }
+}
