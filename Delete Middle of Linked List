@@ -1,0 +1,24 @@
+class Solution {
+    Node deleteMid(Node head) {
+        int size = 0;
+    	Node current = head, prev = null;
+    	
+    	while(current != null) {
+    	    size++;
+    	    current = current.next;
+    	}
+    	
+    	if(size == 0 || size == 1) return null;
+    	
+    	int middlePos = size / 2 + 1;
+    	
+    	current = head;
+    	for(int i=1; i<middlePos; i++) {
+    	    prev = current;
+    	    current = current.next;
+    	}
+    	
+    	prev.next = current.next;
+    	return head;
+    }
+}
