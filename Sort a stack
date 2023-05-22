@@ -1,0 +1,29 @@
+class GfG{
+    public void solve(Stack<Integer> stack) {
+        if(!stack.empty()) {
+            int num = stack.pop();
+            this.solve(stack);
+            this.insertInStack(num, stack);
+        }
+    }
+    
+    public void insertInStack(int num, Stack<Integer> stack) {
+        Stack<Integer> aux = new Stack<>();
+        
+        while(!stack.empty() && num < stack.peek()) {
+            aux.push(stack.pop());
+        }
+        
+        stack.push(num);
+        
+        while(!aux.empty()) {
+            stack.push(aux.pop());
+        }
+    }
+    
+	public Stack<Integer> sort(Stack<Integer> s)
+	{
+		this.solve(s);
+		return s;
+	}
+}
