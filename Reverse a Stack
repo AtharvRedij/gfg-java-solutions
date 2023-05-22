@@ -1,0 +1,15 @@
+class Solution
+{ 
+    static void solve(Stack<Integer> stack, Queue<Integer> elements) {
+        if(!stack.empty()) {
+            elements.add(stack.pop());
+            solve(stack, elements);
+            stack.push(elements.remove());
+        }
+    }
+    static void reverse(Stack<Integer> s)
+    {
+        Queue<Integer> elements = new LinkedList<>();
+        solve(s, elements);
+    }
+}
