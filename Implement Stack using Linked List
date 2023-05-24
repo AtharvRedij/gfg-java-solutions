@@ -1,0 +1,34 @@
+class MyStack 
+{
+    // class StackNode {
+    //     int data;
+    //     StackNode next;
+    //     StackNode(int a) {
+    //         data = a;
+    //         next = null;
+    //     }
+    // }   
+    StackNode top;
+    
+    //Function to push an integer into the stack.
+    void push(int a) 
+    {
+        StackNode node = new StackNode(a);
+        if(this.top != null) {
+            node.next = this.top;
+        }
+        this.top = node;
+    }
+    
+    //Function to remove an item from top of the stack.
+    int pop() 
+    {
+        if(this.top != null) {
+            int result = this.top.data;
+            this.top = this.top.next;
+            return result;
+        }
+        
+        return -1;
+    }
+}
