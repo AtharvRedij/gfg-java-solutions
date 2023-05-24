@@ -1,0 +1,40 @@
+class Queues
+{
+    Queue<Integer> q1 = new LinkedList<Integer>();
+    Queue<Integer> q2 = new LinkedList<Integer>();
+    
+    Queue<Integer> getInsertionQueue() {
+        if(this.q1.size() > 0) return this.q1;
+        
+        return this.q2;
+    }
+    
+    Queue<Integer> getEmptyQueue() {
+        if(this.q1.size() == 0) return this.q1;
+        
+        return this.q2;
+    }
+    
+    //Function to push an element into stack using two queues.
+    void push(int a)
+    {
+	    Queue<Integer> queue = this.getInsertionQueue();
+	    queue.add(a);
+    }
+    
+    //Function to pop an element from stack using two queues. 
+    int pop()
+    {
+	    Queue<Integer> sourceQueue = this.getInsertionQueue();
+	    Queue<Integer> targetQueue = this.getEmptyQueue();
+	    
+	    if (sourceQueue.size() == 0) return -1;
+	    
+	    while(sourceQueue.size() > 1) {
+	        targetQueue.add(sourceQueue.remove());
+	    }
+	    
+	    return sourceQueue.remove();
+    }
+	
+}
