@@ -1,0 +1,29 @@
+class MyQueue
+{
+    QueueNode front, rear;
+    
+    //Function to push an element into the queue.
+	void push(int a)
+	{
+        QueueNode node = new QueueNode(a);
+        if(this.front == null) {
+            this.front = node;
+        }
+        else {
+            this.rear.next = node;
+        }
+        
+        this.rear = node;
+	}
+	
+    //Function to pop front element from the queue.
+	int pop()
+	{
+        if(this.front != null) {
+            int result = this.front.data;
+            this.front = this.front.next;
+            return result;
+        }
+        return -1;
+	}
+}
